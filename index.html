@@ -59,12 +59,10 @@
     .ba-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
     .ba-layer-after { background: radial-gradient(ellipse at center, #3a1c24 0%, #1d0d12 75%); }
 
-    /* Before layer is clipped by width, inner stage stays full size so teeth don't squash */
     .ba-before-wrap { position: absolute; top: 0; left: 0; height: 100%; width: 50%; overflow: hidden; border-right: 4px solid var(--emerald); box-shadow: 8px 0 25px rgba(16,185,129,0.6); z-index: 5; }
     .ba-before-wrap .ba-layer { width: 780px; max-width: none; background: radial-gradient(ellipse at center, #2e1519 0%, #140a0d 75%); }
 
-    /* Mouth / gums */
-    .mouth { position: relative; width: 560px; height: 250px; background: linear-gradient(180deg, #b84a5a 0%, #8f3040 100%); border-radius: 50% 50% 46% 46% / 40% 40% 60% 60%; box-shadow: inset 0 10px 30px rgba(0,0,0,0.5), 0 0 40px rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; }
+    .mouth { position: relative; width: 560px; height: 250px; background: linear-gradient(180deg, #b84a5a 0%, #8f3040 100%); border-radius: 50% 50% 46% 46% / 40% 40% 60% 60%; box-shadow: inset 0 10px 30px rgba(0,0,0,0.5), 0 0 40px rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .mouth::before { content: ''; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 110%, #3a0d18 0%, transparent 60%); }
 
     .teeth-row { position: relative; display: flex; align-items: flex-end; justify-content: center; gap: 4px; height: 130px; z-index: 2; }
@@ -94,7 +92,6 @@
     .teeth-bad .tooth:nth-child(8)  { width: 38px; height: 96px; transform: rotate(-8deg); background: linear-gradient(180deg, #c9ae55 0%, #6e5518 100%); }
     .teeth-bad .tooth:nth-child(9)  { width: 30px; height: 74px; transform: rotate(10deg) translateY(4px); }
     .teeth-bad .tooth:nth-child(10) { width: 26px; height: 64px; transform: rotate(-18deg) translateY(10px); }
-    /* dark stain spots */
     .teeth-bad .tooth::after { content: ''; position: absolute; bottom: 14%; left: 30%; width: 28%; height: 18%; background: rgba(70,40,0,0.55); border-radius: 50%; filter: blur(2px); }
     .teeth-bad .tooth:nth-child(odd)::before { content: ''; position: absolute; top: 20%; right: 18%; width: 18%; height: 14%; background: rgba(90,55,0,0.45); border-radius: 50%; filter: blur(1.5px); }
 
@@ -105,7 +102,6 @@
     .ba-badge-after { right: 20px; color: var(--emerald); }
     .slider-instruction { text-align: center; margin-top: 1.2rem; font-size: 0.95rem; color: var(--text-muted); font-weight: 500; }
 
-    /* Core Services Grid */
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; }
     .service-card { background: var(--bg-card); border: 1px solid var(--border); padding: 2.2rem; border-radius: 20px; transition: all 0.35s ease; position: relative; overflow: hidden; backdrop-filter: blur(10px); }
     .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--emerald), #34d399); opacity: 0; transition: opacity 0.35s ease; }
@@ -141,12 +137,12 @@
 
   <script>
     const clinicConfig = {
-      doctorName: "Dr. Murkute",
+      doctorName: "Dr. Vaidahi",
       qualification: "B.D.S., M.D.S.",
       designation: "Prosthodontist, Oral and Maxillofacial Prosthetics Surgeon and Implantologist",
       clinicName: "Murkute's Dental Care",
       location: "Lohegaon, Pune",
-      phone: "08707860733"
+      phone: "8799862109"
     };
   </script>
 
@@ -171,7 +167,7 @@
       <div class="profile-avatar">👨‍⚕️</div>
       <div class="profile-info">
         <span class="badge">Lead Specialist</span>
-        <h3 id="profileName">Dr. Murkute</h3>
+        <h3 id="profileName">Dr. Vaidahi</h3>
         <div class="qual" id="profileQual">B.D.S., M.D.S.</div>
         <div class="spec" id="profileSpec">Prosthodontist, Oral and Maxillofacial Prosthetics Surgeon and Implantologist</div>
         <p>Expert in restoring and replacing missing teeth with highest precision, dental implants, complete dentures, and comprehensive smile restorations.</p>
@@ -216,7 +212,6 @@
     </div>
   </section>
 
-  <!-- Core Services -->
   <section class="section">
     <h2 class="section-title">Our Core <span>Services</span></h2>
     <div class="services-grid">
@@ -262,7 +257,7 @@
         </div>
         <div class="form-group">
           <label>Preferred Date</label>
-          <input type="date" required>
+          <input type="date" id="patientDate" required>
         </div>
         <button type="submit" class="btn-glow" style="width: 100%; padding: 1.1rem; font-size: 1.05rem;">Confirm Appointment via WhatsApp</button>
       </form>
@@ -282,7 +277,7 @@
       </div>
       <div>
         <h4>Contact Helpline</h4>
-        <p id="footerPhone">Phone: 087078 60733</p>
+        <p id="footerPhone">Phone: 87998 62109</p>
       </div>
     </div>
     <div class="footer-bottom">
@@ -310,7 +305,6 @@
     const baSlider = document.getElementById('baSlider');
 
     function updateBeforeLayer() {
-      // keep the inner "before" stage the same width as the slider so teeth never squash
       const w = baSlider.offsetWidth;
       beforeSide.querySelector('.ba-layer').style.width = w + 'px';
     }
@@ -325,12 +319,16 @@
       setSlider(baRange.value);
     }
 
+    /* WhatsApp booking: uses clinicConfig.phone (8799862109) */
     document.getElementById('bookingForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const name = document.getElementById('patientName').value;
       const phone = document.getElementById('patientPhone').value;
       const treatment = document.getElementById('treatment').value;
-      const text = `Hello ${clinicConfig.doctorName}, I want to book an appointment.%0A- Name: ${name}%0A- Phone: ${phone}%0A- Treatment: ${treatment}`;
+      const date = document.getElementById('patientDate').value;
+      const text = encodeURIComponent(
+        `Hello ${clinicConfig.doctorName}, I want to book an appointment.\n- Name: ${name}\n- Phone: ${phone}\n- Treatment: ${treatment}\n- Preferred Date: ${date}`
+      );
       window.open(`https://wa.me/91${clinicConfig.phone}?text=${text}`, '_blank');
     });
   </script>
