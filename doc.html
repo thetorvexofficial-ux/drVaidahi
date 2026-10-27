@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Murkute's Dental Care | World-Class Dentistry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #050b14;
+      --bg-card: rgba(13, 27, 42, 0.75);
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.4);
+      --gold: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: rgba(16, 185, 129, 0.2);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+    body { background-color: var(--bg-deep); color: var(--text-main); line-height: 1.8; overflow-x: hidden; }
+
+    header { background: rgba(5, 11, 20, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+    .nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
+    .logo { font-weight: 800; font-size: 1.35rem; color: #fff; letter-spacing: -0.5px; display: flex; align-items: center; gap: 0.5rem; }
+    .logo span { color: var(--emerald); text-shadow: 0 0 20px var(--emerald-glow); }
+
+    .btn-glow { background: linear-gradient(135deg, #10b981, #059669); color: #fff; padding: 0.75rem 1.8rem; border-radius: 50px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 25px var(--emerald-glow); transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); border: none; cursor: pointer; display: inline-block; }
+    .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(16, 185, 129, 0.6); }
+
+    .hero { background: radial-gradient(circle at 50% 20%, #0d2137 0%, var(--bg-deep) 70%); padding: 7rem 2rem 5rem; text-align: center; position: relative; }
+    .hero::before { content: ''; position: absolute; width: 450px; height: 450px; background: var(--emerald); filter: blur(160px); opacity: 0.12; top: 10%; left: 50%; transform: translateX(-50%); z-index: 0; animation: pulseGlow 6s infinite alternate; }
+    @keyframes pulseGlow { 0% { transform: translateX(-50%) scale(0.9); opacity: 0.1; } 100% { transform: translateX(-50%) scale(1.1); opacity: 0.2; } }
+
+    .hero-content { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .badge { background: rgba(16, 185, 129, 0.12); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.45rem 1.2rem; border-radius: 30px; font-size: 0.85rem; font-weight: 700; display: inline-block; margin-bottom: 1.8rem; letter-spacing: 0.5px; animation: floatBadge 3s ease-in-out infinite; }
+    @keyframes floatBadge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+    .hero h1 { font-size: 3.4rem; color: #fff; margin-bottom: 1.2rem; font-weight: 800; line-height: 1.2; letter-spacing: -1px; }
+    .hero h1 span { background: linear-gradient(135deg, #34d399, #6ee7b7); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 2.8rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+    .section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+    .section-title { text-align: center; color: #fff; font-size: 2.4rem; margin-bottom: 3.5rem; font-weight: 800; letter-spacing: -0.5px; }
+    .section-title span { color: var(--emerald); }
+
+    .profile-card { background: var(--bg-card); border: 1px solid var(--border); backdrop-filter: blur(14px); border-radius: 24px; padding: 3.5rem; box-shadow: 0 25px 50px rgba(0,0,0,0.5); display: grid; grid-template-columns: 280px 1fr; gap: 3.5rem; align-items: center; transition: 0.4s; }
+    .profile-card:hover { border-color: rgba(16, 185, 129, 0.4); box-shadow: 0 30px 60px rgba(16, 185, 129, 0.1); }
+    .profile-avatar { width: 100%; height: 280px; background: linear-gradient(135deg, #0d2137, #1e3a5f); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 5rem; border: 2px dashed rgba(16,185,129,0.4); box-shadow: inset 0 0 30px rgba(16,185,129,0.1); }
+    .profile-info h3 { color: #fff; font-size: 2.2rem; margin-bottom: 0.4rem; font-weight: 800; }
+    .qual { color: var(--emerald); font-weight: 700; font-size: 1.15rem; margin-bottom: 0.8rem; letter-spacing: 0.5px; }
+    .spec { font-size: 1.05rem; color: #e2e8f0; margin-bottom: 1.5rem; line-height: 1.6; }
+    .profile-info p { color: var(--text-muted); }
+
+    /* ================= BEFORE / AFTER SLIDER (CSS TEETH) ================= */
+    .ba-container { max-width: 780px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border); backdrop-filter: blur(14px); border-radius: 24px; padding: 1.8rem; box-shadow: 0 25px 60px rgba(0,0,0,0.6); }
+    .ba-slider { position: relative; width: 100%; height: 420px; overflow: hidden; border-radius: 16px; user-select: none; background: #1a0f12; }
+
+    .ba-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .ba-layer-after { background: radial-gradient(ellipse at center, #3a1c24 0%, #1d0d12 75%); }
+
+    /* Before layer is clipped by width, inner stage stays full size so teeth don't squash */
+    .ba-before-wrap { position: absolute; top: 0; left: 0; height: 100%; width: 50%; overflow: hidden; border-right: 4px solid var(--emerald); box-shadow: 8px 0 25px rgba(16,185,129,0.6); z-index: 5; }
+    .ba-before-wrap .ba-layer { width: 780px; max-width: none; background: radial-gradient(ellipse at center, #2e1519 0%, #140a0d 75%); }
+
+    /* Mouth / gums */
+    .mouth { position: relative; width: 560px; height: 250px; background: linear-gradient(180deg, #b84a5a 0%, #8f3040 100%); border-radius: 50% 50% 46% 46% / 40% 40% 60% 60%; box-shadow: inset 0 10px 30px rgba(0,0,0,0.5), 0 0 40px rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; }
+    .mouth::before { content: ''; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 110%, #3a0d18 0%, transparent 60%); }
+
+    .teeth-row { position: relative; display: flex; align-items: flex-end; justify-content: center; gap: 4px; height: 130px; z-index: 2; }
+    .tooth { position: relative; background: linear-gradient(180deg, #ffffff 0%, #f4f8fb 60%, #dfe9f0 100%); border-radius: 14px 14px 22px 22px / 10px 10px 26px 26px; box-shadow: inset -3px -4px 8px rgba(0,0,0,0.08), inset 2px 2px 6px rgba(255,255,255,0.9), 0 3px 8px rgba(0,0,0,0.35); }
+
+    /* AFTER: perfect, aligned, white teeth */
+    .teeth-good .tooth { width: 40px; height: 100px; }
+    .teeth-good .tooth:nth-child(1), .teeth-good .tooth:nth-child(10) { width: 30px; height: 78px; }
+    .teeth-good .tooth:nth-child(2), .teeth-good .tooth:nth-child(9) { width: 34px; height: 88px; }
+    .teeth-good .tooth:nth-child(3), .teeth-good .tooth:nth-child(8) { width: 38px; height: 98px; }
+    .teeth-good .tooth:nth-child(4), .teeth-good .tooth:nth-child(7) { width: 44px; height: 112px; }
+    .teeth-good .tooth:nth-child(5), .teeth-good .tooth:nth-child(6) { width: 50px; height: 122px; }
+    .teeth-good .tooth::after { content: ''; position: absolute; top: 10%; left: 18%; width: 22%; height: 55%; background: rgba(255,255,255,0.85); border-radius: 50%; filter: blur(2px); }
+    .teeth-good .tooth { animation: shine 4s ease-in-out infinite; }
+    @keyframes shine { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.08); } }
+
+    /* BEFORE: crooked, yellow, gaps, broken, stained */
+    .teeth-bad { gap: 6px; }
+    .teeth-bad .tooth { background: linear-gradient(180deg, #e9d68a 0%, #cdb25a 55%, #a88a35 100%); box-shadow: inset -3px -4px 8px rgba(80,50,0,0.35), 0 3px 8px rgba(0,0,0,0.5); }
+    .teeth-bad .tooth:nth-child(1)  { width: 28px; height: 70px; transform: rotate(-14deg) translateY(6px); }
+    .teeth-bad .tooth:nth-child(2)  { width: 36px; height: 92px; transform: rotate(8deg); margin-right: 14px; }
+    .teeth-bad .tooth:nth-child(3)  { width: 30px; height: 80px; transform: rotate(-6deg) translateY(10px); }
+    .teeth-bad .tooth:nth-child(4)  { width: 46px; height: 108px; transform: rotate(12deg) translateY(-4px); background: linear-gradient(180deg, #d8c373 0%, #8f7324 100%); clip-path: polygon(0 0, 100% 0, 100% 78%, 78% 88%, 62% 74%, 40% 92%, 0 100%); }
+    .teeth-bad .tooth:nth-child(5)  { width: 40px; height: 100px; transform: rotate(-10deg) translateY(8px); }
+    .teeth-bad .tooth:nth-child(6)  { width: 48px; height: 118px; transform: rotate(6deg) translateX(8px); }
+    .teeth-bad .tooth:nth-child(7)  { width: 32px; height: 82px; transform: rotate(16deg) translateY(12px); margin-left: 12px; }
+    .teeth-bad .tooth:nth-child(8)  { width: 38px; height: 96px; transform: rotate(-8deg); background: linear-gradient(180deg, #c9ae55 0%, #6e5518 100%); }
+    .teeth-bad .tooth:nth-child(9)  { width: 30px; height: 74px; transform: rotate(10deg) translateY(4px); }
+    .teeth-bad .tooth:nth-child(10) { width: 26px; height: 64px; transform: rotate(-18deg) translateY(10px); }
+    /* dark stain spots */
+    .teeth-bad .tooth::after { content: ''; position: absolute; bottom: 14%; left: 30%; width: 28%; height: 18%; background: rgba(70,40,0,0.55); border-radius: 50%; filter: blur(2px); }
+    .teeth-bad .tooth:nth-child(odd)::before { content: ''; position: absolute; top: 20%; right: 18%; width: 18%; height: 14%; background: rgba(90,55,0,0.45); border-radius: 50%; filter: blur(1.5px); }
+
+    .ba-range { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; z-index: 20; }
+    .ba-handle { position: absolute; top: 50%; left: 50%; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; background: var(--emerald); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; box-shadow: 0 0 20px var(--emerald-glow); z-index: 15; pointer-events: none; }
+    .ba-badge { position: absolute; top: 20px; padding: 0.45rem 1.1rem; background: rgba(5, 11, 20, 0.88); backdrop-filter: blur(10px); color: #fff; border-radius: 30px; font-size: 0.8rem; font-weight: 800; letter-spacing: 1px; z-index: 12; border: 1px solid rgba(255,255,255,0.12); }
+    .ba-badge-before { left: 20px; color: var(--gold); }
+    .ba-badge-after { right: 20px; color: var(--emerald); }
+    .slider-instruction { text-align: center; margin-top: 1.2rem; font-size: 0.95rem; color: var(--text-muted); font-weight: 500; }
+
+    /* Core Services Grid */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; }
+    .service-card { background: var(--bg-card); border: 1px solid var(--border); padding: 2.2rem; border-radius: 20px; transition: all 0.35s ease; position: relative; overflow: hidden; backdrop-filter: blur(10px); }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--emerald), #34d399); opacity: 0; transition: opacity 0.35s ease; }
+    .service-card:hover { transform: translateY(-6px); border-color: rgba(16, 185, 129, 0.5); background: rgba(13, 27, 42, 0.95); box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1); }
+    .service-card:hover::before { opacity: 1; }
+    .service-card h4 { color: #fff; margin-bottom: 0.8rem; font-size: 1.15rem; font-weight: 700; }
+    .service-card p { font-size: 0.92rem; color: var(--text-muted); }
+
+    .form-container { background: var(--bg-card); border: 1px solid var(--border); backdrop-filter: blur(16px); border-radius: 24px; padding: 3.5rem; max-width: 680px; margin: 0 auto; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
+    .form-group { margin-bottom: 1.6rem; }
+    .form-group label { display: block; margin-bottom: 0.6rem; font-weight: 700; color: #fff; font-size: 0.95rem; }
+    .form-group input, .form-group select { width: 100%; padding: 1rem 1.2rem; background: rgba(5, 11, 20, 0.7); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-size: 1rem; outline: none; transition: all 0.3s ease; }
+    .form-group input:focus, .form-group select:focus { border-color: var(--emerald); box-shadow: 0 0 15px var(--emerald-glow); background: rgba(5, 11, 20, 0.9); }
+    .form-group select option { background: #0d2137; color: #fff; }
+
+    footer { background: #03070e; border-top: 1px solid rgba(16, 185, 129, 0.15); color: var(--text-muted); padding: 5rem 2rem 2.5rem; margin-top: 6rem; text-align: center; }
+    .footer-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto 3.5rem; text-align: left; }
+    .footer-info h4 { color: #fff; margin-bottom: 1.4rem; font-size: 1.2rem; font-weight: 700; }
+    .footer-info p { margin-bottom: 0.5rem; font-size: 0.98rem; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; font-size: 0.9rem; }
+
+    @media (max-width: 768px) {
+      .profile-card { grid-template-columns: 1fr; text-align: center; padding: 2rem; }
+      .profile-avatar { margin: 0 auto; width: 220px; height: 220px; }
+      .hero h1 { font-size: 2.3rem; }
+      .form-container { padding: 2rem; }
+      .ba-slider { height: 340px; }
+      .mouth { transform: scale(0.62); }
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    const clinicConfig = {
+      doctorName: "Dr. Murkute",
+      qualification: "B.D.S., M.D.S.",
+      designation: "Prosthodontist, Oral and Maxillofacial Prosthetics Surgeon and Implantologist",
+      clinicName: "Murkute's Dental Care",
+      location: "Lohegaon, Pune",
+      phone: "08707860733"
+    };
+  </script>
+
+  <header>
+    <div class="nav">
+      <div class="logo">🦷 <span id="navClinicName">Murkute's</span> Dental</div>
+      <a href="#appointment" class="btn-glow">Book Appointment</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <span class="badge" id="heroBadge">✨ 5.0 Star Rated Dental Excellence in Lohegaon</span>
+      <h1>Advanced Prosthetics & <span>Implant Dentistry</span></h1>
+      <p>Specialized restorative care, precision implants, and custom smile rehabilitation by expert specialists.</p>
+      <a href="#appointment" class="btn-glow">Book Consultation Now</a>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="profile-card">
+      <div class="profile-avatar">👨‍⚕️</div>
+      <div class="profile-info">
+        <span class="badge">Lead Specialist</span>
+        <h3 id="profileName">Dr. Murkute</h3>
+        <div class="qual" id="profileQual">B.D.S., M.D.S.</div>
+        <div class="spec" id="profileSpec">Prosthodontist, Oral and Maxillofacial Prosthetics Surgeon and Implantologist</div>
+        <p>Expert in restoring and replacing missing teeth with highest precision, dental implants, complete dentures, and comprehensive smile restorations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before/After Slider with CSS-drawn teeth -->
+  <section class="section">
+    <h2 class="section-title">Smile Transformation <span>Showcase</span></h2>
+    <div class="ba-container">
+      <div class="ba-slider" id="baSlider">
+
+        <!-- AFTER (full background): healthy white teeth -->
+        <div class="ba-layer ba-layer-after">
+          <div class="mouth">
+            <div class="teeth-row teeth-good">
+              <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
+              <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BEFORE (clipped by slider): damaged teeth -->
+        <div class="ba-before-wrap" id="beforeSide">
+          <div class="ba-layer">
+            <div class="mouth">
+              <div class="teeth-row teeth-bad">
+                <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
+                <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <span class="ba-badge ba-badge-before">BEFORE</span>
+        <span class="ba-badge ba-badge-after">AFTER</span>
+        <div class="ba-handle" id="baHandle">↔</div>
+        <input type="range" min="0" max="100" value="50" class="ba-range" id="baRange" aria-label="Before after slider">
+      </div>
+      <p class="slider-instruction">↔️ Drag slider left & right to see exact teeth transformation</p>
+    </div>
+  </section>
+
+  <!-- Core Services -->
+  <section class="section">
+    <h2 class="section-title">Our Core <span>Services</span></h2>
+    <div class="services-grid">
+      <div class="service-card"><h4>Oral & Maxillofacial Prosthesis</h4><p>Custom prosthetic solutions for facial and oral structural corrections.</p></div>
+      <div class="service-card"><h4>Root Canal Treatment</h4><p>Painless precision endodontic therapy to save infected teeth.</p></div>
+      <div class="service-card"><h4>Ultrasonic Cleaning / Scaling</h4><p>Advanced removal of tartar and plaque for gum health.</p></div>
+      <div class="service-card"><h4>Complete Denture</h4><p>Custom-fitted functional replacements for complete teeth restoration.</p></div>
+      <div class="service-card"><h4>Implant Support Denture</h4><p>Secure and stable denture anchoring using advanced dental implants.</p></div>
+      <div class="service-card"><h4>Smile Designing</h4><p>Aesthetic customized corrections for a flawless celebrity smile.</p></div>
+      <div class="service-card"><h4>Composite Restorations</h4><p>Tooth-colored natural fillings for cavities and chips.</p></div>
+      <div class="service-card"><h4>Orthodontic Treatment</h4><p>Braces and alignment correction for perfectly straight teeth.</p></div>
+      <div class="service-card"><h4>Pedodontic Treatment</h4><p>Gentle and friendly dental care specially for children.</p></div>
+      <div class="service-card"><h4>Teeth Whitening / Bleaching</h4><p>Professional whitening to remove deep stains and brighten teeth.</p></div>
+      <div class="service-card"><h4>Crown & Bridges</h4><p>Durable caps and fixed bridges to restore broken or missing teeth.</p></div>
+      <div class="service-card"><h4>Extraction & Wisdom Teeth</h4><p>Safe, comfortable removal of damaged or impacted wisdom teeth.</p></div>
+      <div class="service-card"><h4>Digital X-Ray</h4><p>Low-radiation high-definition diagnostic imaging.</p></div>
+      <div class="service-card"><h4>Full Mouth Rehabilitation</h4><p>Comprehensive full-mouth restoration of teeth and bite function.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="appointment">
+    <h2 class="section-title">Schedule Your <span>Visit</span></h2>
+    <div class="form-container">
+      <form id="bookingForm">
+        <div class="form-group">
+          <label>Patient Full Name</label>
+          <input type="text" id="patientName" required placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label>Phone / WhatsApp Number</label>
+          <input type="tel" id="patientPhone" required placeholder="Enter 10-digit mobile number">
+        </div>
+        <div class="form-group">
+          <label>Select Treatment / Concern</label>
+          <select id="treatment">
+            <option>General Consultation</option>
+            <option>Oral & Maxillofacial Prosthesis</option>
+            <option>Root Canal Treatment</option>
+            <option>Implant Support Denture</option>
+            <option>Smile Designing</option>
+            <option>Teeth Whitening</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Date</label>
+          <input type="date" required>
+        </div>
+        <button type="submit" class="btn-glow" style="width: 100%; padding: 1.1rem; font-size: 1.05rem;">Confirm Appointment via WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-info">
+      <div>
+        <h4 id="footerClinic">Murkute's Dental Care</h4>
+        <p id="footerDoc">Dr. Murkute (B.D.S., M.D.S.)</p>
+        <p id="footerLoc">Porwal Sathe Wasti Road, Lohegaon, Pune</p>
+      </div>
+      <div>
+        <h4>Clinic Timings</h4>
+        <p id="footerTime">All Days: 9:00 AM – 9:00 PM</p>
+      </div>
+      <div>
+        <h4>Contact Helpline</h4>
+        <p id="footerPhone">Phone: 087078 60733</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p id="footerCopy">&copy; 2026 Murkute's Dental Care. Premium Client Demo.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('pageTitle').innerText = `${clinicConfig.clinicName} | ${clinicConfig.doctorName}`;
+    document.getElementById('navClinicName').innerText = clinicConfig.clinicName.split("'")[0];
+    document.getElementById('heroBadge').innerText = `✨ 5.0 Star Rated Care in ${clinicConfig.location}`;
+    document.getElementById('profileName').innerText = clinicConfig.doctorName;
+    document.getElementById('profileQual').innerText = clinicConfig.qualification;
+    document.getElementById('profileSpec').innerText = clinicConfig.designation;
+    document.getElementById('footerClinic').innerText = clinicConfig.clinicName;
+    document.getElementById('footerDoc').innerText = `${clinicConfig.doctorName} (${clinicConfig.qualification})`;
+    document.getElementById('footerLoc').innerText = clinicConfig.location;
+    document.getElementById('footerPhone').innerText = `Phone: ${clinicConfig.phone}`;
+    document.getElementById('footerCopy').innerHTML = `&copy; 2026 ${clinicConfig.clinicName}. Premium Client Demo.`;
+
+    /* Before/After slider logic */
+    const baRange = document.getElementById('baRange');
+    const beforeSide = document.getElementById('beforeSide');
+    const baHandle = document.getElementById('baHandle');
+    const baSlider = document.getElementById('baSlider');
+
+    function updateBeforeLayer() {
+      // keep the inner "before" stage the same width as the slider so teeth never squash
+      const w = baSlider.offsetWidth;
+      beforeSide.querySelector('.ba-layer').style.width = w + 'px';
+    }
+    function setSlider(v) {
+      beforeSide.style.width = v + '%';
+      baHandle.style.left = v + '%';
+    }
+    if (baRange && beforeSide) {
+      baRange.addEventListener('input', (e) => setSlider(e.target.value));
+      window.addEventListener('resize', updateBeforeLayer);
+      updateBeforeLayer();
+      setSlider(baRange.value);
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('patientName').value;
+      const phone = document.getElementById('patientPhone').value;
+      const treatment = document.getElementById('treatment').value;
+      const text = `Hello ${clinicConfig.doctorName}, I want to book an appointment.%0A- Name: ${name}%0A- Phone: ${phone}%0A- Treatment: ${treatment}`;
+      window.open(`https://wa.me/91${clinicConfig.phone}?text=${text}`, '_blank');
+    });
+  </script>
+</body>
+</html>
